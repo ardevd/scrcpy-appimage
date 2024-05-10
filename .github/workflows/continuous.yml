@@ -75,18 +75,4 @@ jobs:
           ./appimagetool*.AppImage AppDir -n -u 'gh-releases-zsync|srevinsaju|scrcpy-appimage|continuous|scrcpy*.AppImage.zsync' scrcpy-$(git describe --tags)-$(uname -m).AppImage
           mkdir dist
           mv scrcpy*.AppImage* dist/
-
-
-      - name: Create release and upload artifacts
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_CONTINUOUS_RELEASE_TAG: ${{ matrix.build_type }}
-          CHANGELOG_TYPE: conventional
-        run: |
-          export APPIMAGE_EXTRACT_AND_RUN=1
-          export GITHUB_CONTINUOUS_RELEASE_TAG=continuous
-          export GITHUB_CONTINUOUS_RELEASE_TYPE=prerelease
-          export GITHUB_CONTINUOUS_RELEASE_NAME="Continuous build"
-          wget -q https://github.com/srevinsaju/pyuploadtool/releases/download/continuous/pyuploadtool-x86_64.AppImage && chmod +x pyuploadtool-x86_64.AppImage
-          ./pyuploadtool-x86_64.AppImage scrcpy/dist/*.AppImage*
-
+          
