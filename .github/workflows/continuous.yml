@@ -1,11 +1,10 @@
-name: Continuous
+name: scrcpy-build
+
 on:
-  schedule:
-    - cron: "5 */12 * * *"
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -37,16 +36,23 @@ jobs:
           cd scrcpy
           sudo apt install -y ffmpeg libsdl2-2.0-0 adb
           # client build dependencies
-          sudo apt install -y gcc git pkg-config ninja-build \
-                 libavcodec-dev libavformat-dev libavutil-dev \
-                 libsdl2-dev libcroco3 libavdevice-dev libusb-1.0-0-dev
-          sudo apt install -y python3-pip
+          # runtime dependencies
+          sudo apt install ffmpeg libsdl2-2.0-0 adb libusb-1.0-0
+
+          # client build dependencies
+          sudo apt install gcc git pkg-config meson ninja-build libsdl2-dev \
+                          libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
+                          libswresample-dev libusb-1.0-0-dev
+
+          # server build dependencies
+          sudo apt install openjdk-17-jdk python3-pip
+
           pip3 install meson --user
 
       - name: Build scrcpy
         run: |
           cd scrcpy
-          wget $(curl https://api.github.com/repos/Genymobile/scrcpy/releases/latest | jq -r '.assets[].browser_download_url' | grep server) -O scrcpy_server
+          wget https://github.com/Genymobile/scrcpy/releases/download/v2.4/scrcpy-server-v2.4 -O scrcpy_server
           ~/.local/bin/meson x --buildtype release --strip -Db_lto=true \
             -Dprebuilt_server=./scrcpy_server
           ninja -Cx 
