@@ -12,7 +12,7 @@ jobs:
     container: 
       image: appimagecrafters/appimage-builder:latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up User
         run: |
           apt update
@@ -82,7 +82,7 @@ jobs:
           mv scrcpy*.AppImage* dist/
 
       - name: Upload AppImage Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: scrcpy-AppImage
           path: scrcpy/dist/*.AppImage
