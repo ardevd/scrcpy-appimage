@@ -23,13 +23,7 @@ Based on https://github.com/srevinsaju/scrcpy-appimage.
 #### File Manager
 Just double click the `*.AppImage` file and you are done!
 
-> In normal cases, the above method should work, but in some rare cases
-the `+x` permissisions. So, right click > Properties > Allow Execution
-
 #### Terminal 
-```bash
-./scrcpy-*.AppImage
-```
 ```bash
 chmod +x scrcpy-*.AppImage
 ./scrcpy-*.AppImage
