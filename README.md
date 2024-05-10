@@ -6,25 +6,17 @@
   <p align="center">
     An unofficial AppImage build for <a href="https://github.com/Genymobile/scrcpy">scrcpy</a>
     <br>
-    <a href="https://github.com/srevinsaju/scrcpy-appimage/issues/new">Report bug</a>
-    ·
     <a href="https://github.com/Genymobile/scrcpy">Original project</a>
   </p>
 </p>
 
-
-
-> **NOTE**: These appimages are far from complete. This is a patched version of 
-`scrcpy` which gets integrated into the GUI of scrcpy `guiscrcpy`.
-See [`guiscrcpy`](/srevinsaju/guiscrcpy) for more details and usage.
-
-An unofficial AppImage for the open source android screen mirroring software
+An unofficial AppImage for the open source android screen mirroring software.
 [scrcpy](https://github.com/Genymobile/scrcpy)
 
-Continuous Integration to create preconfigured AppImages of scrcpy. 
+Based on https://github.com/srevinsaju/scrcpy-appimage. 
 
 ## Getting Started
-* Go to [Releases](https://github.com/srevinsaju/scrcpy-appimage/releases)
+* Go to [Releases](https://github.com/ardevd/scrcpy-appimage/releases)
 * Download the latest the scrcpy-x.x.x.AppImage. 
 
 ### Executing
