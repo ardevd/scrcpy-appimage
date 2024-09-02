@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,8 +16,6 @@ jobs:
       image: appimagecrafters/appimage-builder:latest
     steps:
       - uses: actions/checkout@v3
-        env:
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       - name: Install Dependencies
         run: |
           apt update
