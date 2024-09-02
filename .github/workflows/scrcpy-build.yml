@@ -20,7 +20,7 @@ jobs:
         run: |
           apt update
           apt install -y wget unzip build-essential ffmpeg libsdl2-2.0-0 adb libusb-1.0-0 \
-                               gcc glibc git pkg-config meson ninja-build libsdl2-dev \
+                               gcc git pkg-config meson ninja-build libsdl2-dev \
                                libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
                                libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip
           pip3 install meson --user
