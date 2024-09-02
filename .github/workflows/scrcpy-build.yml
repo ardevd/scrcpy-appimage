@@ -12,7 +12,7 @@ jobs:
     container: 
       image: appimagecrafters/appimage-builder:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       - name: Install Dependencies
