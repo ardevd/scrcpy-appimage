@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,7 +36,7 @@ jobs:
         run: | 
           git clone https://github.com/Genymobile/scrcpy
           cd scrcpy
-          wget https://github.com/Genymobile/scrcpy/releases/download/v2.4/scrcpy-server-v2.4 -O scrcpy_server
+          wget https://github.com/Genymobile/scrcpy/releases/download/v2.6.1/scrcpy-server-v2.6.1 -O scrcpy_server
 
       - name: Build scrcpy
         run: |
