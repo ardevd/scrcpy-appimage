@@ -12,18 +12,32 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: appimagecrafters/appimage-builder:latest
+    container: ubuntu:22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Dependencies
         run: |
           apt update
           apt install -y wget unzip build-essential ffmpeg libsdl2-2.0-0 adb libusb-1.0-0 \
                                gcc git pkg-config meson ninja-build libsdl2-dev \
                                libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
-                               libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip
-          pip3 install meson --user
+                               libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip \
+                               libsndio-dev file
+          pip3 install meson
+
+          # Install dependencies not available in Ubuntu 22.04 repos
+          wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3_amd64.deb
+          dpkg -i libicu60_60.2-3ubuntu3_amd64.deb
+          wget http://mirrors.kernel.org/ubuntu/pool/main/n/nettle/libnettle6_3.4-1_amd64.deb
+          dpkg -i libnettle6_3.4-1_amd64.deb
+          wget http://mirrors.kernel.org/ubuntu/pool/main/n/nettle/libhogweed4_3.4-1_amd64.deb
+          dpkg -i libhogweed4_3.4-1_amd64.deb          
+          wget https://mirrors.wikimedia.org/ubuntu/pool/main/libc/libcroco/libcroco3_0.6.13-1_amd64.deb
+          dpkg -i libcroco3_0.6.13-1_amd64.deb
+          apt-get -f install
+          # Install appimage-builder
+          wget https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage -O /usr/local/bin/appimage-builder
+          chmod +x /usr/local/bin/appimage-builder
 
       - name: Setup Build Environment
         run: |
@@ -36,18 +50,19 @@ jobs:
         run: | 
           git clone https://github.com/Genymobile/scrcpy
           cd scrcpy
-          wget https://github.com/Genymobile/scrcpy/releases/download/v2.6.1/scrcpy-server-v2.6.1 -O scrcpy_server
+          wget https://github.com/Genymobile/scrcpy/releases/download/v3.1/scrcpy-server-v3.1 -O scrcpy_server
 
       - name: Build scrcpy
         run: |
           cd scrcpy
-          ~/.local/bin/meson x --buildtype release --strip -Db_lto=true \
+          meson x --buildtype release --strip -Db_lto=true \
             -Dprebuilt_server=./scrcpy_server
           ninja -Cx 
           ninja -Cx install 
 
       - name: Build AppImage
         run: |
+          ln -s /usr/lib/x86_64-linux-gnu/libsndio.so.7 /usr/lib/x86_64-linux-gnu/libsndio.so.6.1
           cd scrcpy
           export APPIMAGE_EXTRACT_AND_RUN=1
           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
