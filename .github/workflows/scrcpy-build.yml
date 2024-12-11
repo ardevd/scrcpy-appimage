@@ -24,7 +24,7 @@ jobs:
                                libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip
           pip3 install --break-system-packages meson --user
           # Install appimage-builder
-          wget https://github.com/AppImageCrafters/appimage-builder/releases/download/continuous/appimage-builder-x86_64.AppImage -O /usr/local/bin/appimage-builder
+          wget https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage -O /usr/local/bin/appimage-builder
           chmod +x /usr/local/bin/appimage-builder
 
       - name: Setup Build Environment
