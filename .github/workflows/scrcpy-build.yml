@@ -12,8 +12,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: appimagecrafters/appimage-builder:latest
+    container: ubuntu:24.04
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
@@ -24,6 +23,9 @@ jobs:
                                libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
                                libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip
           pip3 install meson --user
+          # Install appimage-builder
+          wget https://github.com/AppImageCrafters/appimage-builder/releases/download/continuous/appimage-builder-x86_64.AppImage -O /usr/local/bin/appimage-builder
+          chmod +x /usr/local/bin/appimage-builder
 
       - name: Setup Build Environment
         run: |
