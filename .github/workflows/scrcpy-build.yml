@@ -32,8 +32,8 @@ jobs:
           dpkg -i libnettle6_3.4-1_amd64.deb
           wget http://mirrors.kernel.org/ubuntu/pool/main/n/nettle/libhogweed4_3.4-1_amd64.deb
           dpkg -i libhogweed4_3.4-1_amd64.deb          
-          wget http://mirrors.kernel.org/ubuntu/pool/universe/libc/libcroco/libcroco3_0.6.12-2_amd64.deb
-          dpkg -i libcroco3_0.6.12-2_amd64.deb 
+          wget http://mirrors.edge.kernel.org/ubuntu/pool/universe/libc/libcroco/libcroco-tools_0.6.13-1_amd64.deb
+          dpkg -i libcroco-tools_0.6.13-1_amd64.deb 
           apt-get -f install
           # Install appimage-builder
           wget https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage -O /usr/local/bin/appimage-builder
