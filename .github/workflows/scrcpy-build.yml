@@ -22,7 +22,7 @@ jobs:
                                gcc git pkg-config meson ninja-build libsdl2-dev \
                                libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
                                libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip
-          pip3 install meson
+          pip3 install --break-system-packages meson --user
           # Install appimage-builder
           wget https://github.com/AppImageCrafters/appimage-builder/releases/download/continuous/appimage-builder-x86_64.AppImage -O /usr/local/bin/appimage-builder
           chmod +x /usr/local/bin/appimage-builder
