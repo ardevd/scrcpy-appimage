@@ -23,7 +23,7 @@ jobs:
                                libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
                                libswresample-dev libusb-1.0-0-dev openjdk-17-jdk python3-pip \
                                libsndio-dev
-          pip3 install --break-system-packages meson
+          pip3 install meson
           # Install appimage-builder
           wget https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage -O /usr/local/bin/appimage-builder
           chmod +x /usr/local/bin/appimage-builder
@@ -51,7 +51,6 @@ jobs:
 
       - name: Build AppImage
         run: |
-          ln -s /usr/lib/x86_64-linux-gnu/libsndio.so.7 /usr/lib/x86_64-linux-gnu/libsndio.so.6.1
           cd scrcpy
           export APPIMAGE_EXTRACT_AND_RUN=1
           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
