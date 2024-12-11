@@ -43,7 +43,7 @@ jobs:
       - name: Build scrcpy
         run: |
           cd scrcpy
-          ~/.local/bin/meson x --buildtype release --strip -Db_lto=true \
+          meson x --buildtype release --strip -Db_lto=true \
             -Dprebuilt_server=./scrcpy_server
           ninja -Cx 
           ninja -Cx install 
