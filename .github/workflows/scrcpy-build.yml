@@ -28,10 +28,11 @@ jobs:
           # Install dependencies not available in Ubuntu 22.04 repos
           wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3_amd64.deb
           dpkg -i libicu60_60.2-3ubuntu3_amd64.deb
-          apt-get -f install
           wget http://mirrors.kernel.org/ubuntu/pool/main/n/nettle/libnettle6_3.4-1_amd64.deb
           dpkg -i libnettle6_3.4-1_amd64.deb
-          apt-get -f install          
+          wget http://mirrors.kernel.org/ubuntu/pool/main/n/nettle/libhogweed4_3.4-1_amd64.deb
+          dpkg -i libhogweed4_3.4-1_amd64.deb           
+          apt-get -f install
           # Install appimage-builder
           wget https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage -O /usr/local/bin/appimage-builder
           chmod +x /usr/local/bin/appimage-builder
