@@ -51,6 +51,7 @@ jobs:
 
       - name: Build AppImage
         run: |
+          ln -s /usr/lib/x86_64-linux-gnu/libsndio.so.7 /usr/lib/x86_64-linux-gnu/libsndio.so.6.1
           cd scrcpy
           export APPIMAGE_EXTRACT_AND_RUN=1
           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
